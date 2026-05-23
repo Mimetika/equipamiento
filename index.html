@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equipamiento — T.P. N° 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream-base: #FDF8F3;
+  --cream-deep: #F5EDE4;
+  --cream-edge: #EADFD0;
+  --terracotta: #B85C50;
+  --terracotta-dark: #8B3A30;
+  --sage: #9BB08F;
+  --wood: #A47C5C;
+  --ink: #2A2520;
+  --ink-soft: #5A5048;
+  --ink-faint: #8A7E72;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--cream-base);
+  color: var(--ink);
+  line-height: 1.7;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.page {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  max-width: 1280px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background-color: var(--cream-deep);
+  border-right: 1px solid var(--cream-edge);
+  padding: 48px 28px 48px 36px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.brandblock {
+  margin-bottom: 36px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--cream-edge);
+}
+
+.brand-title {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--terracotta-dark);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.brand-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-faint);
+  margin-top: 6px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.toc-heading {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+  margin-bottom: 14px;
+}
+
+.toc {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.toc-link {
+  display: block;
+  font-size: 14px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding: 9px 12px;
+  border-radius: 4px;
+  transition: background-color 160ms ease, color 160ms ease;
+  border-left: 2px solid transparent;
+}
+
+.toc-link:hover {
+  color: var(--terracotta-dark);
+  background-color: rgba(184, 92, 80, 0.06);
+}
+
+.toc-link.active {
+  color: var(--terracotta-dark);
+  font-weight: 600;
+  border-left-color: var(--terracotta);
+  background-color: rgba(184, 92, 80, 0.08);
+}
+
+.toc-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-faint);
+  margin-right: 10px;
+}
+
+.toc-link.active .toc-num {
+  color: var(--terracotta);
+}
+
+.content {
+  padding: 72px 80px 120px 80px;
+  max-width: 820px;
+}
+
+.cover {
+  padding-bottom: 80px;
+  margin-bottom: 60px;
+  border-bottom: 1px solid var(--cream-edge);
+}
+
+.cover-mark {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--wood);
+  margin-bottom: 32px;
+}
+
+.cover h1 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.cover .tp-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  color: var(--terracotta);
+  margin-bottom: 56px;
+  letter-spacing: 0.02em;
+}
+
+.cover-grid {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 14px 28px;
+  margin-bottom: 40px;
+}
+
+.cover-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding-top: 4px;
+}
+
+.cover-value {
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.cover-value .student-line {
+  display: block;
+  padding: 2px 0;
+}
+
+.links-block {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.link-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--terracotta-dark);
+  text-decoration: none;
+  font-style: italic;
+  font-size: 15px;
+  padding: 6px 0;
+  border-bottom: 1px dotted var(--cream-edge);
+  width: fit-content;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.link-item::before {
+  content: "→";
+  font-family: 'JetBrains Mono', monospace;
+  font-style: normal;
+  color: var(--terracotta);
+  font-size: 14px;
+}
+
+.link-item:hover {
+  color: var(--terracotta);
+  border-bottom-color: var(--terracotta);
+}
+
+.section {
+  padding: 56px 0 40px 0;
+  border-bottom: 1px solid var(--cream-edge);
+}
+
+.section:last-of-type {
+  border-bottom: none;
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin-bottom: 36px;
+}
+
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: var(--terracotta);
+  padding: 4px 10px;
+  background-color: rgba(184, 92, 80, 0.08);
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.section h2 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 38px;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.section p {
+  margin-bottom: 22px;
+  font-size: 16.5px;
+  color: var(--ink);
+  line-height: 1.75;
+}
+
+.section a {
+  color: var(--terracotta-dark);
+  text-decoration: underline;
+  text-decoration-color: rgba(139, 58, 48, 0.35);
+  text-underline-offset: 3px;
+}
+
+.section a:hover {
+  text-decoration-color: var(--terracotta-dark);
+}
+
+.formula {
+  font-family: 'JetBrains Mono', monospace;
+  background-color: var(--cream-deep);
+  border-left: 3px solid var(--sage);
+  padding: 18px 24px;
+  margin: 28px 0;
+  font-size: 15px;
+  color: var(--ink);
+  border-radius: 2px;
+  letter-spacing: 0.02em;
+}
+
+.formula-key {
+  font-family: 'JetBrains Mono', monospace;
+  background-color: var(--cream-deep);
+  border-left: 3px solid var(--wood);
+  padding: 20px 24px;
+  margin: 28px 0;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  border-radius: 2px;
+  line-height: 1.85;
+}
+
+.formula-key strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.scenario-list {
+  background-color: var(--cream-deep);
+  padding: 18px 24px;
+  margin: 24px 0;
+  border-radius: 3px;
+  border-left: 3px solid var(--terracotta);
+}
+
+.scenario-list .scn {
+  font-size: 15px;
+  padding: 4px 0;
+}
+
+.conclusion-block {
+  margin-top: 30px;
+  padding-top: 4px;
+}
+
+.conclusion-item {
+  margin-bottom: 32px;
+  padding: 22px 26px;
+  background-color: var(--cream-deep);
+  border-radius: 4px;
+  border-left: 3px solid var(--terracotta);
+}
+
+.conclusion-item h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--terracotta-dark);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.conclusion-item p {
+  margin-bottom: 0;
+  font-size: 15.5px;
+  color: var(--ink);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px 0 40px 0;
+  gap: 14px;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background-color: var(--cream-edge);
+}
+
+.divider-mark {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--wood);
+}
+
+.to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--terracotta);
+  color: var(--cream-base);
+  border: none;
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease, transform 220ms ease, background-color 200ms ease;
+  box-shadow: 0 4px 16px rgba(139, 58, 48, 0.25);
+}
+
+.to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.to-top:hover {
+  background-color: var(--terracotta-dark);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 960px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--cream-edge);
+    padding: 32px 24px;
+  }
+  .content {
+    padding: 40px 28px 100px 28px;
+  }
+  .cover h1 {
+    font-size: 44px;
+  }
+  .section h2 {
+    font-size: 28px;
+  }
+  .cover-grid {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .cover-label {
+    margin-top: 12px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <aside class="sidebar">
+    <div class="brandblock">
+      <div class="brand-title">Equipamiento</div>
+      <div class="brand-sub">T.P. N° 1 — Polidoro</div>
+    </div>
+    <div class="toc-heading">Índice</div>
+    <nav class="toc">
+      <a href="#caratula" class="toc-link"><span class="toc-num">00</span>Carátula</a>
+      <a href="#ej1" class="toc-link"><span class="toc-num">01</span>Ejercicio N° 1</a>
+      <a href="#ej2" class="toc-link"><span class="toc-num">02</span>Ejercicio N° 2</a>
+      <a href="#ej3" class="toc-link"><span class="toc-num">03</span>Ejercicio N° 3</a>
+      <a href="#ej4" class="toc-link"><span class="toc-num">04</span>Ejercicio N° 4</a>
+      <a href="#ej5" class="toc-link"><span class="toc-num">05</span>Ejercicio N° 5</a>
+      <a href="#ej6" class="toc-link"><span class="toc-num">06</span>Ejercicio N° 6</a>
+      <a href="#conclusiones" class="toc-link"><span class="toc-num">07</span>Conclusiones</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+
+    <section class="cover" id="caratula">
+      <div class="cover-mark">Trabajo Práctico</div>
+      <h1>Equipamiento</h1>
+      <div class="tp-tag">T.P. N° 1</div>
+
+      <div class="cover-grid">
+        <div class="cover-label">Docente</div>
+        <div class="cover-value">Pablo Polidoro</div>
+
+        <div class="cover-label">Estudiantes</div>
+        <div class="cover-value">
+          <span class="student-line">Lucas Aupi</span>
+          <span class="student-line">Leonardo Feldman</span>
+          <span class="student-line">Santiago Capisto</span>
+        </div>
+
+        <div class="cover-label">Enlaces</div>
+        <div class="cover-value">
+          <div class="links-block">
+            <a class="link-item" href="https://drive.google.com/drive/folders/1wnqnZpWRhLFbcVgQ3VT_bR6IWYCgyTml?usp=sharing" target="_blank" rel="noopener"><em>Señales de Control - Capturas - Proyecto de Reaper</em></a>
+            <a class="link-item" href="https://docs.google.com/spreadsheets/d/1QNSTwo7sI1lkSZ8t0JdHU7jFXGr5w3m7t6vwx_95azE/edit?usp=sharing" target="_blank" rel="noopener"><em>Registro de Señales de Control</em></a>
+            <a class="link-item" href="#conclusiones"><em>Conclusiones</em></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ej1">
+      <div class="section-header">
+        <span class="section-num">Ejercicio</span>
+        <h2>Ejercicio N° 1</h2>
+      </div>
+
+      <p>En lugar de referirnos a una onda sinusoidal, proponemos el término función senoidal. Asimismo, el término nivel, en lugar del término amplitud.</p>
+
+      <p>Nuestro análisis está centrado en la transición entre la arquitectura de procesamiento interna de un DAW qué opera en Floating Point y el formato de almacenamiento en Fixed Point. Esto implica dos fenómenos, una reducción de la resolución y un cambio de paradigma en la representación numérica.</p>
+
+      <p>Podemos simplificar la idea pensando qué en Floating Point, la resolución es relativa a la magnitud de la señal (el error es proporcional al nivel de la señal). Al guardar a Fixed Point, la resolución se vuelve absoluta y uniforme: todos los intervalos de cuantización tienen el mismo tamaño, definidos por el LSB.</p>
+
+      <p>Aunque Sound Forge opera en Floating Point, la consigna requiere guardar el archivo en instancias intermedias. Al hacerlo, forzamos una reducción de la longitud de palabra (Word Length), ya sea por redondeo o por truncamiento. Definimos el error de cuantización como ½ LSB si redondeamos y cómo 1 LSB si truncamos, una diferencia que es crítica para esta experiencia.</p>
+
+      <p>Al guardar la Señal N° 2 con una atenuación (reducción de nivel) de 80 dB, alcanzando los -90 dBFS, observamos que su magnitud es comparable al mínimo intervalo de cuantización.</p>
+
+      <p>Si bien en la arquitectura Fixed Point, el error de cuantización es constante a lo largo de todo el rango dinámico, su impacto y la degradación resultante son significativamente mayores a bajos niveles de señal, donde el error de cuantización representa una proporción mucho mayor de la magnitud total de la señal. En esa transición, el sistema debe ejecutar una mecánica específica para descartar los bits excedentes de la mantisa del Floating y encajarlos en los intervalos fijos y estáticos del Fixed.</p>
+
+      <p>En este escenario, el truncamiento de 1 LSB genera una correlación agresiva entre el error y la señal, lo que provoca una pérdida de información irreversible.</p>
+
+      <p>Al amplificar la señal (80 dB) para obtener la Señal N° 3, no restauramos la linealidad de la señal, solo amplificamos (la degradación) provocada por el error de cuantización correlado, generado durante el guardado. Si realizáramos esta operación exclusivamente en Floating Point, sin almacenamiento/guardado intermedio, la señal conservaría su estructura original, al no existir un cambio entre arquitecturas qué la degrade.</p>
+    </section>
+
+    <section class="section" id="ej2">
+      <div class="section-header">
+        <span class="section-num">Ejercicio</span>
+        <h2>Ejercicio N° 2</h2>
+      </div>
+
+      <p>En este ejercicio, el foco se desplaza al dominio de la frecuencia, evaluando las implicancias del Teorema de Muestreo (Nyquist-Shannon) durante un proceso de Decimación en dos escenarios.</p>
+
+      <div class="scenario-list">
+        <div class="scn">Escenario N° 1 - Con la aplicación de un Filtro antialias.</div>
+        <div class="scn">Escenario N° 2 - Sin la aplicación de un Filtro antialias.</div>
+      </div>
+
+      <p>La reducción de la Frec. de Muestreo (decimación) de 44.100 Hz a 11.025 Hz implica una degradación de la señal. La nueva Frec. de Nyquist será de 5.512 Hz. En ausencia del Filtro Antialias cualquier componente de la Señal de Control (barrido lineal de 20 Hz a 20 kHz) por encima de la nueva Frec. de Nyquist genera un plegado (Foldback) sobre la nueva banda base comprendida entre 20 Hz y 5.512 Hz. Decidimos truncar el valor 5.512,5 Hz a 5.512 Hz.</p>
+
+      <p>La ecuación del plegado es la siguiente:</p>
+
+      <div class="formula">falias = (fin - k . fs)</div>
+
+      <div class="formula-key">
+        <strong>falias:</strong> es la frecuencia del nuevo componente plegado dentro de la banda base.<br>
+        <strong>fin:</strong> es la señal de entrada qué pertenecía al barrido previo al proceso de degradación.<br>
+        <strong>k:</strong> Entero positivo que representa el factor de duplicación de la frecuencia de muestreo necesario para situar el alias dentro del espectro audible. Resultante del redondeo al entero más cercano, del cociente entre la frecuencia de la señal de entrada y la frecuencia de muestreo, round (fin/fs).<br>
+        <strong>fs:</strong> es la nueva Frecuencia de Muestreo.
+      </div>
+
+      <p>El resultado de la ecuación debe expresarse en valor absoluto (módulo) dentro de la banda base.</p>
+
+      <p>En la Señal N° 2, la conversión requiere incluir un Filtro antialias. Como resultado, la señal barre hasta alcanzar los 5.512 Hz, punto a partir del cuál se extingue, evitando la generación de Foldback.</p>
+
+      <p>En la Señal N° 3, en ausencia de un Filtro antialias, la señal original barre hasta alcanzar los 5.512 Hz, punto a partir del cuál se extingue, pero se observa la generación de nuevos componentes espectrales dentro de la banda base.</p>
+    </section>
+
+    <section class="section" id="ej3">
+      <div class="section-header">
+        <span class="section-num">Ejercicio</span>
+        <h2>Ejercicio N° 3</h2>
+      </div>
+
+      <p>En este caso nos focalizamos en las consecuencias de exceder el nivel máximo representable (0 dBFS) en una arquitectura de Fixed Point y en el carácter irreversible de esa operación. El fenómeno qué opera detrás de este escenario es conocido en Inglés cómo Arithmetic Overflow.</p>
+
+      <p>Fuera del entorno DSP ese fenómeno genera un Wrap Around, pero en nuestro contexto, se representa con el máximo valor posible a todas las muestras por encima del rango de intervalos de cuantización propios de la resolución del formato. Se presentaron en el mundo Fixed Point muchas alternativas elegantes para paliar el Arithmetic Overflow, por ej El Chip <a href="https://www.nxp.com/docs/en/reference-manual/DSP56000UM.pdf" target="_blank" rel="noopener">Motorola 56k</a> (1986) el estándar en DSP para resolver este fenómeno en Fixed Point, qué tiene un registros de entrada y salida (de 24 bits respectivamente) con un registro de 8 bits (Guard Bits) en el acumulador para los pasos intermedios donde se implementa el procesamiento.</p>
+
+      <p>Al generar la Señal N° 1 a 0 dBFS, la función senoidal ocupa la totalidad del rango dinámico disponible en el formato. No queda margen (headroom) para ningún tipo de amplificación posterior sin qué se produzca saturación en el dominio digital (Digital Clipping).</p>
+
+      <p>Al aplicar una amplificación de 40 dB para obtener la Señal N° 2, si bien Sound Forge opera internamente en Floating Point, el guardado fuerza al sistema a encajar la señal dentro de una arquitectura de 16 Bits Fixed Point. Cualquier valor qué exceda 0 dBFS no puede representarse y es asignado (recortado) al valor máximo positivo o negativo del rango. El resultado es una función senoidal saturada qué, dependiendo del nivel excedente, tiende a aproximarse, en mayor o menor medida, a una función cuadrada.</p>
+
+      <p>En este punto es importante destacar qué este recorte no responde a un error de cuantización por redondeo o truncamiento, sino a una limitación concreta por las condiciones propias del formato. La consecuencia espectral es la generación de nuevos componentes armónicos (3°, 5°, 7°, etc.) y, dependiendo de la frecuencia fundamental y del orden del armónico generado, la posibilidad de qué estos parciales superen la frecuencia de Nyquist y generen Foldback sobre la banda base.</p>
+
+      <p>Atenuar 40 dB para obtener la Señal N° 3, no implica restaurar las condiciones de la señal inicial (Señal N° 1). Solo atenuamos la señal ya degradada por la saturación (Digital Clipping). El contenido armónico generado durante el guardado de la Señal N° 2 se preserva íntegramente, y solo se modifica su nivel.</p>
+    </section>
+
+    <section class="section" id="ej4">
+      <div class="section-header">
+        <span class="section-num">Ejercicio</span>
+        <h2>Ejercicio N° 4</h2>
+      </div>
+
+      <p>Esta experiencia compara dos resoluciones de cuantización en condiciones de bajo nivel de señal, donde el comportamiento del LSB de cada formato resulta determinante.</p>
+
+      <p>El análisis se centra en cómo la longitud de palabra (Word Length) condiciona la representación de una señal cuyo nivel se aproxima al límite inferior del rango dinámico de la Resolución y el formato.</p>
+
+      <p>En Fixed Point, el rango dinámico teórico se aproxima a 6,02 dB por cada bit disponible. Para 16 Bits obtenemos aproximadamente 96 dB de rango dinámico, mientras qué en 8 Bits ese valor se reduce a aproximadamente 48 dB. El LSB del formato de 8 Bits se ubica entonces alrededor de los -48 dBFS.</p>
+
+      <p>La Señal N° 1, generada y guardada en 16 Bits a -50 dBFS, mantiene una representación íntegra. El nivel de la señal se ubica aproximadamente 46 dB por encima del error de cuantización del formato, lo qué garantiza qué la función senoidal conserve su estructura periódica sin presentar una degradación significativa.</p>
+
+      <p>La Señal N° 2, generada y guardada en 8 Bits al mismo nivel de -50 dBFS, se encuentra por debajo del LSB del formato. La magnitud de la señal es menor qué el intervalo mínimo de cuantización disponible. En estas condiciones, el sistema no puede representar la oscilación periódica de la función senoidal: dependiendo de la fase instantánea y de la mecánica de cuantización aplicada, la señal puede colapsar al valor cero o reducirse a una sucesión esporádica de transiciones entre el LSB positivo y negativo, comportándose como ruido correlado en lugar de como una señal periódica reconocible.</p>
+
+      <p>Es este punto es importante destacar qué la información perdida no es recuperable mediante amplificación posterior. Lo qué no existió como representación digital en el momento del guardado, no puede ser reconstruido.</p>
+    </section>
+
+    <section class="section" id="ej5">
+      <div class="section-header">
+        <span class="section-num">Ejercicio</span>
+        <h2>Ejercicio N° 5</h2>
+      </div>
+
+      <p>Esta experiencia replica las condiciones del Ejercicio N° 4, pero ubicando el nivel de la señal apenas por encima del LSB del formato de 8 Bits, con el objetivo de observar la degradación cuando la señal sí puede representarse, pero con escasos intervalos de cuantización disponibles.</p>
+
+      <p>A diferencia del ejercicio anterior, donde la señal de -50 dBFS quedaba por debajo del LSB del formato de 8 Bits, ahora trabajamos con un nivel de -40 dBFS qué sí entra dentro del rango representable, pero con un margen de apenas 8 dB respecto al LSB del formato.</p>
+
+      <p>La Señal N° 1, generada y guardada en 16 Bits a -40 dBFS, mantiene una representación íntegra. El margen respecto al piso de ruido de cuantización es de aproximadamente 56 dB, por lo qué la función senoidal conserva su estructura sin degradación apreciable, ni en el dominio temporal ni en el dominio espectral (frecuencia).</p>
+
+      <p>La Señal N° 2, generada y guardada en 8 Bits al mismo nivel, dispone solo de unos pocos pasos de cuantización para describir la oscilación completa de la función senoidal. La forma de onda resultante presenta un perfil escalonado, donde cada tramo de la sinusoide se aproxima mediante segmentos discretos de magnitud constante, sin la suavidad característica de la curva original.</p>
+
+      <p>Es este punto es importante destacar qué el error de cuantización aquí es agresivamente correlado con la señal, ya qué ambos comparten una relación periódica directa. Espectralmente, esto se traduce en la aparición de armónicos impares de la fundamental qué no existían en la señal original. La degradación es audible y visible tanto en el dominio temporal (perfil escalonado en la forma de onda) como en el dominio espectral (parciales espurios en el análisis espectral).</p>
+    </section>
+
+    <section class="section" id="ej6">
+      <div class="section-header">
+        <span class="section-num">Ejercicio</span>
+        <h2>Ejercicio N° 6</h2>
+      </div>
+
+      <p>Esta experiencia integra los conceptos abordados en los Ejercicios N° 4 y 5, observando dinámicamente el comportamiento de una señal cuando aplicamos un Fade Out (Atenuación a -inf) a través de los intervalos de cuantización de cada Resolución.</p>
+
+      <p>A diferencia de los ejercicios previos, donde el nivel se mantenía constante, en este caso la señal recorre el rango comprendido entre -40 dBFS y silencio absoluto, atravesando progresivamente todos los niveles intermedios de cuantización del formato de destino.</p>
+
+      <p>La Señal N° 1, generada y guardada en 16 Bits, presenta una caída de nivel suave y continua. Dado qué el rango dinámico del formato es de aproximadamente 96 dB, la señal dispone de un amplio margen para describir/ representar la variación de ganancia (atenuación) sin qué los intervalos de cuantización resulten perceptibles. La función senoidal mantiene su estructura periódica hasta niveles muy próximos al piso de ruido del formato y la transición al silencio se percibe como una atenuación continua.</p>
+
+      <p>La Señal N° 2, convertida desde 16 a 8 Bits, presenta un comportamiento radicalmente distinto. A medida qué el nivel desciende, la función senoidal atraviesa progresivamente cada uno de los intervalos de cuantización disponibles, qué son escasos. La forma de onda exhibe un perfil escalonado qué se vuelve cada vez más evidente conforme el nivel se aproxima al LSB del formato y el contenido armónico espurio aumenta su impacto relativo respecto a la fundamental.</p>
+
+      <p>Cuando el nivel de la señal cruza el umbral de -48 dBFS, alcanzando el LSB del formato de 8 Bits, la oscilación periódica se interrumpe. A partir de ese punto, la señal colapsa: el sistema no dispone de intervalos de cuantización adicionales por debajo y el fadeout no continúa de forma gradual, sino qué se extingue de manera abrupta.</p>
+
+      <p>Es este punto es importante destacar qué la atenuación a -inf solicitada en la consigna no se realiza completamente en el formato de 8 Bits. La señal desaparece antes, en el momento exacto en qué cruza el umbral del LSB, generando un corte audible qué contrasta con la atenuación progresiva presente en el formato de 16 Bits.</p>
+    </section>
+
+    <section class="section" id="conclusiones">
+      <div class="section-header">
+        <span class="section-num">Cierre</span>
+        <h2>Conclusiones</h2>
+      </div>
+
+      <div class="conclusion-block">
+
+        <div class="conclusion-item">
+          <h3>Ejercicio N° 1</h3>
+          <p>La integridad de una señal, está supeditada a la resolución del formato y a la mecánica de cuantización aplicada durante el guardado.</p>
+        </div>
+
+        <div class="conclusion-item">
+          <h3>Ejercicio N° 2</h3>
+          <p>La diferencia entre el escenario de la Señal N° 2 y la Señal N° 3, reside en la presencia o no de nuevos componentes espectrales plegados sobre la banda base, siempre considerando qué este fenómeno es una resultante directa de la aplicación (o la omisión) del Filtro antialias durante el proceso de Decimación.</p>
+        </div>
+
+        <div class="conclusion-item">
+          <h3>Ejercicio N° 3</h3>
+          <p>La saturación o recorte (Digital Clipping) introduce contenido espectral qué no existía en la señal original y dicho fenómeno es irreversible. La integridad de la señal está supeditada a la disponibilidad (de margen / Headroom) respecto a la Resolución y el formato asociado, elegido durante cada operación de guardado.</p>
+        </div>
+
+        <div class="conclusion-item">
+          <h3>Ejercicio N° 4</h3>
+          <p>La resolución del formato establece un piso absoluto por debajo del cual ninguna señal puede ser representada. En 8 Bits, una señal de -50 dBFS queda por debajo de ese piso y deja de existir como tal, mientras qué en 16 Bits ese mismo nivel permanece dentro del rango útil de la Resolución del Formato.</p>
+        </div>
+
+        <div class="conclusion-item">
+          <h3>Ejercicio N° 5</h3>
+          <p>Cuando el nivel de la señal se aproxima al LSB del formato, el error de cuantización deja de comportarse estadísticamente como ruido y se convierte en distorsión armónica correlada. La cantidad de bits disponibles condiciona directamente la fidelidad de la representación a bajos niveles.</p>
+        </div>
+
+        <div class="conclusion-item">
+          <h3>Ejercicio N° 6</h3>
+          <p>La resolución del formato, no solo determina el piso de ruido, sino también la precisión con la cuál una señal puede atravesar los niveles inferiores del formato. En 8 Bits, los fadeouts resultan inviables sin recurrir a procesos adicionales como el dithering, qué permitirían descorrelar el error de cuantización y suavizar la transición al silencio mediante la incorporación controlada de ruido aleatorio.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-mark">— FIN —</div>
+      <div class="divider-line"></div>
+    </div>
+
+  </main>
+
+</div>
+
+<button class="to-top" id="toTopBtn" aria-label="Volver arriba">↑</button>
+
+<script>
+var tocLinks = document.querySelectorAll('.toc-link');
+var sections = document.querySelectorAll('.section, .cover');
+var toTopBtn = document.getElementById('toTopBtn');
+
+function updateActiveSection() {
+  var scrollPos = window.scrollY + 140;
+  var found = null;
+  var i;
+  for (i = 0; i < sections.length; i++) {
+    var sec = sections[i];
+    var top = sec.offsetTop;
+    var bottom = top + sec.offsetHeight;
+    if (scrollPos >= top && scrollPos < bottom) {
+      found = sec.getAttribute('id');
+    }
+  }
+  if (found === null && window.scrollY < 200) {
+    found = 'caratula';
+  }
+  var j;
+  for (j = 0; j < tocLinks.length; j++) {
+    tocLinks[j].classList.remove('active');
+  }
+  if (found) {
+    var activeLink = document.querySelector('.toc-link[href="#' + found + '"]');
+    if (activeLink) {
+      activeLink.classList.add('active');
+    }
+  }
+}
+
+function toggleTopButton() {
+  if (window.scrollY > 600) {
+    toTopBtn.classList.add('visible');
+  } else {
+    toTopBtn.classList.remove('visible');
+  }
+}
+
+function handleScroll() {
+  updateActiveSection();
+  toggleTopButton();
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+window.addEventListener('scroll', handleScroll);
+window.addEventListener('load', handleScroll);
+toTopBtn.addEventListener('click', scrollToTop);
+
+var k;
+for (k = 0; k < tocLinks.length; k++) {
+  tocLinks[k].addEventListener('click', function(e) {
+    var href = this.getAttribute('href');
+    if (href && href.charAt(0) === '#') {
+      var target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        var offset = target.offsetTop - 20;
+        window.scrollTo({ top: offset, behavior: 'smooth' });
+      }
+    }
+  });
+}
+</script>
+
+</body>
+</html>
